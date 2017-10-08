@@ -16,8 +16,11 @@ $ composer install
 
 ## Usage
 
+- First make sure the "run" script is executable.
+- Run it:
+
 ```bash
-php index.php RW15RW3L2
+./run RW15RW3L2
 ```
 
 ## Tests
