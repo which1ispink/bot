@@ -1,0 +1,27 @@
+{
+    "name": "which1ispink/bot-test",
+    "description": "A simple bot-controlling program",
+    "authors": [
+        {
+            "name": "Ahmed Hassan",
+            "email": "a.hassan.dev@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bot\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bot\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "quicktest": "vendor/bin/phpunit --no-coverage"
+    }
+}
