@@ -13,8 +13,8 @@ class BotTest extends TestCase
      */
     public function test_can_be_instantiated()
     {
-        $bot = new Bot();
+        $bot = new BotImpl();
 
-        $this->assertInstanceOf(Bot::class, $bot);
+        $this->assertInstanceOf(BotImpl::class, $bot);
     }
 }
