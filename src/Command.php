@@ -1,7 +1,5 @@
 <?php
-namespace Bot\Command;
-
-use Bot\Bot;
+namespace Bot;
 
 /**
  * Interface Command

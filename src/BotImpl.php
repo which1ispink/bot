@@ -1,8 +1,9 @@
 <?php
 namespace Bot;
 
-use Bot\Command\Command;
-
+/**
+ * Class BotImpl
+ */
 class BotImpl implements Bot
 {
     /**
@@ -11,31 +12,58 @@ class BotImpl implements Bot
     private $position;
 
     /**
-     * @var string
+     * @var Direction
      */
     private $direction;
 
     /**
-     * @var Command[]
+     * @var string
      */
-    private $commands;
+    private $rawCommand;
 
     /**
-     * Bot constructor
+     * @var CommandParser
+     */
+    private $commandParser;
+
+    /**
+     * BotImpl constructor
      *
      * @param Position $initialPosition
-     * @param string $initialDirection
-     * @param Command[] $commands
+     * @param Direction $initialDirection
+     * @param string $rawCommand
+     * @param CommandParser $commandParser
      */
-    public function __construct(Position $initialPosition, string $initialDirection, array $commands)
-    {
+    public function __construct(
+        Position $initialPosition,
+        Direction $initialDirection,
+        string $rawCommand,
+        CommandParser $commandParser
+    ) {
         $this->position = $initialPosition;
         $this->direction = $initialDirection;
-        $this->commands = $commands;
+        $this->rawCommand = $rawCommand;
+        $this->commandParser = $commandParser;
     }
 
     /**
-     * @return Position
+     * @inheritdoc
+     */
+    public function executeCommand(): array
+    {
+        $commands = $this->commandParser->parseRawCommand($this->rawCommand);
+        foreach ($commands as $command) {
+            $command->execute($this);
+        }
+
+        return [
+            'position' => $this->position->toArray(),
+            'direction' => $this->direction
+        ];
+    }
+
+    /**
+     * @inheritdoc
      */
     public function getPosition(): Position
     {
@@ -43,41 +71,28 @@ class BotImpl implements Bot
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    public function getDirection(): string
+    public function changeDirection(string $direction): self
     {
-        return $this->direction;
-    }
+        $this->direction = $direction;
 
-    /**
-     * @return Command[]
-     */
-    public function getCommands(): array
-    {
-        return $this->commands;
+        return $this;
     }
 
     /**
      * @inheritdoc
      */
-    public function executeCommands(): array
+    public function getDirection(): Direction
     {
-        foreach ($this->commands as $command) {
-            $this->executeCommand($command);
-        }
-
-        return [
-            'position'  => $this->position,
-            'direction' => $this->direction
-        ];
+        return $this->direction;
     }
 
     /**
-     * @param Command $command
+     * @return string
      */
-    private function executeCommand(Command $command)
+    public function getRawCommand(): string
     {
-        $command->execute($this);
+        return $this->rawCommand;
     }
 }
