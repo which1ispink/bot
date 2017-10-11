@@ -1,15 +1,15 @@
 <?php
-namespace Bot;
+namespace Bot\Command;
 
 /**
- * Class CommandParserImpl
+ * Class RawCommandParser
  */
-class CommandParserImpl implements CommandParser
+class RawCommandParser implements StringCommandParser
 {
     /**
      * @inheritdoc
      */
-    public function parseRawCommand(string $command): array
+    public function parseCommand(string $command): array
     {
         $commands = [];
 

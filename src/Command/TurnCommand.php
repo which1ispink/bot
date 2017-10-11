@@ -1,5 +1,7 @@
 <?php
-namespace Bot;
+namespace Bot\Command;
+
+use Bot\Bot;
 
 /**
  * Class TurnCommand
@@ -40,7 +42,7 @@ class TurnCommand implements Command
     public function execute(Bot $bot)
     {
         if ($this->turningDirection == self::LEFT) {
-            $bot->changeDirection()
+
         }
     }
 }

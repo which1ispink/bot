@@ -58,11 +58,11 @@ class Direction
     }
 
     /**
-     * Gets the clockwise direction of the current direction
+     * Returns an instance from the clockwise direction of the current direction
      *
      * @return string
      */
-    public function getClockwiseDirection()
+    public function createFromClockwiseDirection()
     {
         $currentDirectionKey = $this->getCurrentDirectionKey();
         if ($currentDirectionKey == (count(self::DIRECTIONS) - 1)) {
@@ -71,15 +71,15 @@ class Direction
             $clockWiseDirectionKey = $currentDirectionKey + 1;
         }
 
-        return self::DIRECTIONS[$clockWiseDirectionKey];
+        return new self(self::DIRECTIONS[$clockWiseDirectionKey]);
     }
 
     /**
-     * Gets the counter-clockwise direction of the current direction
+     * Returns an instance from the counter-clockwise direction of the current direction
      *
      * @return string
      */
-    public function getCounterClockwiseDirection()
+    public function createFromCounterClockwiseDirection()
     {
         $currentDirectionKey = $this->getCurrentDirectionKey();
         if ($currentDirectionKey == 0) {
@@ -88,7 +88,15 @@ class Direction
             $counterClockwiseDirectionKey = $currentDirectionKey - 1;
         }
 
-        return self::DIRECTIONS[$counterClockwiseDirectionKey];
+        return new self(self::DIRECTIONS[$counterClockwiseDirectionKey]);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->direction;
     }
 
     /**
