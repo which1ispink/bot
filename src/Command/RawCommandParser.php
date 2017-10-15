@@ -7,22 +7,28 @@ namespace Bot\Command;
 class RawCommandParser implements StringCommandParser
 {
     /**
+     * @var string
+     */
+    const COMMAND_REGEX = "/R|L|(W\d+)/";
+
+    /**
      * @inheritdoc
      */
     public function parseCommand(string $command): array
     {
-        $commands = [
-            new TurnCommand(TurnCommand::RIGHT),
-            new WalkCommand(15),
-            new TurnCommand(TurnCommand::RIGHT),
-            new WalkCommand(3),
-            new TurnCommand(TurnCommand::LEFT),
-            new WalkCommand(2),
-        ];
+        $subcommands = [];
 
-        $chars = str_split($command);
-        foreach ($chars as $char) {}
+        $patternMatches = [];
+        preg_match_all(self::COMMAND_REGEX, $command, $patternMatches);
+        foreach ($patternMatches[0] as $match) {
+            if (in_array($match, [TurnCommand::RIGHT, TurnCommand::LEFT])) {
+                $subcommands[] = new TurnCommand($match);
+            } elseif (strpos($match, 'W') !== false) {
+                $distance = str_replace('W', '', $match);
+                $subcommands[] = new WalkCommand($distance);
+            }
+        }
 
-        return $commands;
+        return $subcommands;
     }
 }
