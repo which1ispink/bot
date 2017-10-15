@@ -16,12 +16,10 @@ if (! isset($argv[1])) {
     die('No command line argument supplied' . PHP_EOL);
 }
 
-$initialPosition = new Position();
-$initialDirection = new Direction(Direction::NORTH);
 $command = $argv[1];
 $commandParser = new RawCommandParser();
 
-$bot = new Bot($initialPosition, $initialDirection, $command, $commandParser);
+$bot = new Bot(new Position(), new Direction(), $command, $commandParser);
 $endDetails = $bot->executeCommand();
 
 print_r($endDetails);

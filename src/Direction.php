@@ -46,7 +46,7 @@ class Direction
      *
      * @param string $direction
      */
-    public function __construct(string $direction)
+    public function __construct(string $direction = self::NORTH)
     {
         if (! in_array($direction, self::DIRECTIONS)) {
             throw new \InvalidArgumentException(

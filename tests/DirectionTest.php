@@ -30,7 +30,7 @@ class DirectionTest extends TestCase
     /**
      * @covers ::createFromClockwiseDirection
      */
-    public function test_can_create_new_instance_from_clockwise_direction()
+    public function test_createFromClockwiseDirection_creates_new_instance_from_clockwise_direction()
     {
         $direction = new Direction(Direction::NORTH);
         $newDirection = $direction->createFromClockwiseDirection();
@@ -41,7 +41,7 @@ class DirectionTest extends TestCase
     /**
      * @covers ::createFromCounterClockwiseDirection
      */
-    public function test_can_create_new_instance_from_counter_clockwise_direction()
+    public function test_createFromCounterClockwiseDirection_creates_new_instance_from_counter_clockwise_direction()
     {
         $direction = new Direction(Direction::NORTH);
         $newDirection = $direction->createFromCounterClockwiseDirection();
