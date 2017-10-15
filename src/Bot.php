@@ -79,8 +79,8 @@ class Bot
 
     public function executeCommand(): array
     {
-        $commands = $this->commandParser->parseCommand($this->rawCommand);
-        foreach ($commands as $command) {
+        $subcommands = $this->commandParser->parseCommand($this->rawCommand);
+        foreach ($subcommands as $command) {
             $command->execute($this);
         }
 
