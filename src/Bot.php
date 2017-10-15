@@ -86,7 +86,7 @@ class Bot
 
         return [
             'position' => $this->position->toArray(),
-            'direction' => $this->direction
+            'direction' => (string) $this->direction
         ];
     }
 }
