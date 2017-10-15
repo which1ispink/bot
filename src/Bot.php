@@ -48,6 +48,10 @@ class Bot
         $this->commandParser = $commandParser;
     }
 
+    /**
+     * @param Position $position
+     * @return static
+     */
     public function setPosition(Position $position): self
     {
         $this->position = $position;
@@ -55,11 +59,18 @@ class Bot
         return $this;
     }
 
+    /**
+     * @return Position
+     */
     public function getPosition(): Position
     {
         return $this->position;
     }
 
+    /**
+     * @param Direction $direction
+     * @return static
+     */
     public function setDirection(Direction $direction): self
     {
         $this->direction = $direction;
@@ -67,16 +78,27 @@ class Bot
         return $this;
     }
 
+    /**
+     * @return Direction
+     */
     public function getDirection(): Direction
     {
         return $this->direction;
     }
 
+    /**
+     * @return string
+     */
     public function getRawCommand(): string
     {
         return $this->rawCommand;
     }
 
+    /**
+     * Executes the raw command given to the bot
+     *
+     * @return array
+     */
     public function executeCommand(): array
     {
         $subcommands = $this->commandParser->parseCommand($this->rawCommand);

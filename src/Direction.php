@@ -60,9 +60,9 @@ class Direction
     /**
      * Returns an instance from the clockwise direction of the current direction
      *
-     * @return string
+     * @return Direction
      */
-    public function createFromClockwiseDirection()
+    public function createFromClockwiseDirection(): Direction
     {
         $currentDirectionKey = $this->getCurrentDirectionKey();
         if ($currentDirectionKey == (count(self::DIRECTIONS) - 1)) {
@@ -77,9 +77,9 @@ class Direction
     /**
      * Returns an instance from the counter-clockwise direction of the current direction
      *
-     * @return string
+     * @return Direction
      */
-    public function createFromCounterClockwiseDirection()
+    public function createFromCounterClockwiseDirection(): Direction
     {
         $currentDirectionKey = $this->getCurrentDirectionKey();
         if ($currentDirectionKey == 0) {
@@ -94,16 +94,24 @@ class Direction
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->direction;
     }
 
     /**
      * @return int
+     * @throws \RuntimeException if the direction is invalid, somehow
      */
-    private function getCurrentDirectionKey()
+    private function getCurrentDirectionKey(): int
     {
-        return array_search($this->direction, self::DIRECTIONS);
+        $currentDirectionKey = array_search($this->direction, self::DIRECTIONS);
+        if ($currentDirectionKey === false) {
+            throw new \RuntimeException(
+                sprintf('"%s" is an invalid direction. Something is broken.', $this->direction)
+            );
+        }
+
+        return $currentDirectionKey;
     }
 }

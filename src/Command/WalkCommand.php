@@ -24,6 +24,10 @@ class WalkCommand implements Command
         $this->distance = $distance;
     }
 
+    /**
+     * @inheritdoc
+     * @throws \RuntimeException if the bot's current direction is invalid
+     */
     public function execute(Bot $bot)
     {
         $currentBotDirection = (string) $bot->getDirection();
@@ -42,8 +46,8 @@ class WalkCommand implements Command
                 $bot->setPosition($currentBotPosition->moveX(-$this->distance));
                 break;
             default:
-                throw new \InvalidArgumentException(
-                    sprintf('The current bot direction "%s" is invalid.', $currentBotDirection)
+                throw new \RuntimeException(
+                    sprintf('The bot\'s current direction "%s" is invalid.', $currentBotDirection)
                 );
         }
     }
