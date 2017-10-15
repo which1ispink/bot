@@ -48,9 +48,35 @@ class Bot
         $this->commandParser = $commandParser;
     }
 
-    /**
-     * @inheritdoc
-     */
+    public function setPosition(Position $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getPosition(): Position
+    {
+        return $this->position;
+    }
+
+    public function setDirection(Direction $direction): self
+    {
+        $this->direction = $direction;
+
+        return $this;
+    }
+
+    public function getDirection(): Direction
+    {
+        return $this->direction;
+    }
+
+    public function getRawCommand(): string
+    {
+        return $this->rawCommand;
+    }
+
     public function executeCommand(): array
     {
         $commands = $this->commandParser->parseCommand($this->rawCommand);
@@ -62,39 +88,5 @@ class Bot
             'position' => $this->position->toArray(),
             'direction' => $this->direction
         ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPosition(): Position
-    {
-        return $this->position;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function changeDirection(string $direction): self
-    {
-        $this->direction = $direction;
-
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getDirection(): Direction
-    {
-        return $this->direction;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRawCommand(): string
-    {
-        return $this->rawCommand;
     }
 }

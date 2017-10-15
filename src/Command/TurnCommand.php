@@ -39,10 +39,15 @@ class TurnCommand implements Command
         $this->turningDirection = $turningDirection;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function execute(Bot $bot)
     {
         if ($this->turningDirection == self::LEFT) {
-
+            $bot->setDirection($bot->getDirection()->createFromCounterClockwiseDirection());
+        } elseif ($this->turningDirection == self::RIGHT) {
+            $bot->setDirection($bot->getDirection()->createFromClockwiseDirection());
         }
     }
 }

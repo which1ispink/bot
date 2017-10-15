@@ -1,8 +1,8 @@
 # which1ispink/bot
 
 This is a simple bot implementation that accepts a command like the following 
-'RW15RW3L2', executes it (turns right, walks 15 steps, turns right, 
-walks 3 steps, turns left, walks 2 steps), and returns the position and 
+'RW15RW3LW5', executes it (turns right, walks 15 steps, turns right, 
+walks 3 steps, turns left, walks 5 steps), and returns the position and 
 direction at the end of execution. Initial position is 0, 0, and initial 
 direction is north.
 
@@ -20,7 +20,7 @@ $ composer install
 - Run it:
 
 ```bash
-./run RW15RW3L2
+./run RW15RW3LW5
 ```
 
 ## Tests
