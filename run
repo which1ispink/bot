@@ -5,16 +5,16 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 ini_set('memory_limit', '2048m');
 
+if (! isset($argv[1])) {
+    die('No command line argument supplied' . PHP_EOL);
+}
+
 require 'vendor/autoload.php';
 
 use Bot\Command\RawCommandParser;
 use Bot\Position;
 use Bot\Direction;
 use Bot\Bot;
-
-if (! isset($argv[1])) {
-    die('No command line argument supplied' . PHP_EOL);
-}
 
 $command = $argv[1];
 $commandParser = new RawCommandParser();
